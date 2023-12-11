@@ -3,21 +3,19 @@
 :icons: font
 :MoSCoW: https://fr.wikipedia.org/wiki/M%C3%A9thode_MoSCoW[MoSCoW]
 
-Ce dépôt concerne les rendus de mailto:A_changer@etu.univ-tlse2.fr[Jonh Doe].
+Ce dépôt concerne les rendus de mailto:aurelien.sanchez-porro@etu.univ-tlse2.fr[Aurélien Sanchez-Porro].
 
 == TP1
 
 .Exemple de code
 [source,java]
 ---
-@Given("today is Sunday")
-public void today_is_sunday() {
-    // Write code here that turns the phrase above into concrete actions
-    throw new io.cucumber.java.PendingException();
+@When("I ask whether it's Friday yet")
+public void i_ask_wether_its_friday_yet(){
+    this.answer = IsItFriday.isItFriday(this.day);
 }
 ---
 
-.Exemple d'image insérée en asciidoc
-image::artifacts-r303.svg[width=80%]
-
+.Résultat à la fin de la séance
+image::images/tp1_result.png[width=80%]
 == TP2...

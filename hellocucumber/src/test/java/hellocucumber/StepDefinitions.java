@@ -6,6 +6,7 @@ import static org.junit.jupiter.api.Assertions.*;
 
 public class StepDefinitions {
 
+    /*
     @Given("an example scenario")
     public void anExampleScenario() {
     }
@@ -18,8 +19,6 @@ public class StepDefinitions {
     public void theScenarioPasses() {
     }
 
-    private String day;
-    private String answer;
 
     @Given("It is Sunday")
     public void it_is_sunday(){
@@ -34,13 +33,34 @@ public class StepDefinitions {
     @Then("I should get a {string}")
     public void i_should_get_a(String normalAnswer) {
         assertEquals(normalAnswer, answer);
+    }*/
+
+    private String day;
+    private String answer;
+
+    @Given("today is {string}")
+    public void today_is(String today){
+        this.day = today;
     }
 
+    @When("I ask whether it's Friday yet")
+    public void i_ask_wether_its_friday_yet(){
+        this.answer = IsItFriday.isItFriday(this.day);
+    }
+
+    @Then("I should be told {string}")
+    public void i_should_be_told(String normalAnswer) {
+        assertEquals(normalAnswer, answer);
+    }
 
 }
 
 class IsItFriday {
     static String isItFriday(String today) {
+        System.out.println(today);
+        if("Friday".equals(today)) {
+            return "TGIF";
+        }
         return "no";
     }
 
