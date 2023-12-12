@@ -18,4 +18,14 @@ public void i_ask_wether_its_friday_yet(){
 
 .Résultat à la fin de la séance
 image::images/tp1_result.png[width=80%]
+
 == TP2...
+
+.Code de la classe "Order"
+[source,java]
+----
+include::cucumber_demo/src/test/java/dojo/Order.java[]
+----
+
+.Résultat à la fin de la séance
+image::images/tp2_result.png[width=80%]
