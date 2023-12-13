@@ -58,3 +58,68 @@ public class Order {
 
 .Résultat à la fin de la séance
 image::images/tp2_result.png[width=80%]
+
+
+== TP3 (java)
+
+Pour ce 3ème TP, j'ai fait des tests pour vérifier si une image est présente pour le compte rendu d'un TP dans ce fichier README.
+Au départ, j'avais prévu aussi de vérifier la présence de code, mais cette idée n'a pas été retenue.
+
+.Résultat lorsque l'image du TP 3 n'est pas présente
+image::images/tp3_result.png[width=80%]
+
+.Résultat après avoir ajouté l'image précédente
+image::images/tp3b_result.png[width=80%]
+
+Cependant, un des défauts de ces tests est qu'il suffit que je nomme l'image du compte rendu d'une manière différente que j'ai fait jusqu'a présent pour que le test ne passe plus.
+
+.Feature "readme.feature"
+[source,feature]
+----
+Feature: Checking if the readme is working
+
+ Scenario Outline: After a TP, I update the readme with some code and a picture
+   Given I finished TP <nTP>
+   When I have the readme file
+   Then The picture should be in the readme
+   Examples:
+     | nTP        |
+     | 1          |
+     | 2          |
+     | 3          |
+
+----
+
+.Code de la classe "StepDefinitions"
+[source,java]
+----
+public class StepDefinitions {
+
+    private int nTP;
+
+    String content;
+
+    File readme;
+
+    @Given("I finished TP {int}")
+    public void iFinishedTP(int tp) {
+        this.nTP = tp; //get the tp number
+    }
+
+    @When("I have the readme file")
+    public void iHaveTheReadmeFile() throws IOException {
+        this.readme = new File("../README.adoc");
+        this.content = FileUtils.readFileToString(this.readme, "UTF-8");
+        //get the "README.adoc" file, and put it in "content"
+    }
+
+    @Then("The picture should be in the readme")
+    public void thePictureShouldBeInTheReadme() {
+        String imageUrl = "images/tp"+ nTP + "_result.png";
+
+        assertTrue(content.contains(imageUrl));
+        //check if there is the picture in the content
+    }
+}
+
+----
